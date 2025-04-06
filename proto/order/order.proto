@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package order;
+
+option go_package = "grpc/proto/order";
+
+// The request message for creating an order
+message CreateOrderRequest {
+  string customer_id = 1;
+  repeated string product_ids = 2;
+}
+
+// The response message after creating an order
+message CreateOrderResponse {
+  string order_id = 1;
+  string status = 2;
+}
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+}

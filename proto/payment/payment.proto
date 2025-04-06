@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "grpc/proto/payment";
+
+// The request and response messages for payment processing
+message PaymentRequest {
+  string order_id = 1;
+  double amount = 2;
+}
+
+message PaymentResponse {
+  string payment_id = 1;
+  string status = 2; // Possible statuses: SUCCESS, FAILED
+}
+
+// The payment service definition
+service PaymentService {
+  rpc ProcessPayment(PaymentRequest) returns (PaymentResponse);
+}
